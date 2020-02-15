@@ -4,6 +4,7 @@ resource "aws_subnet" "pscloud-subnet" {
   vpc_id                      = var.pscloud_vpc_id
   availability_zone           = var.pscloud_subnets_list[count.index].az
   cidr_block                  = var.pscloud_subnets_list[count.index].cidr_block
+  map_public_ip_on_launch     = (var.pscloud_type == "public") ? true : false
 
   tags = {
     Name                      = "${var.pscloud_company}_subnet_${var.pscloud_type}_${var.pscloud_env}"
