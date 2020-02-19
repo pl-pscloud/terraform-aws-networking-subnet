@@ -7,8 +7,8 @@ resource "aws_subnet" "pscloud-subnet" {
   map_public_ip_on_launch     = (var.pscloud_type == "public") ? true : false
 
   tags = {
-    Name                      = "${var.pscloud_company}_subnet_${var.pscloud_type}_${var.pscloud_env}"
-    Project = var.pscloud_project
+    Name                      = "${var.pscloud_company}_subnet_${var.pscloud_type}_${var.pscloud_env}_${var.pscloud_project}_${var.pscloud_subnets_list[count.index].cidr_block}"
+    Project                   = var.pscloud_project
   }
 }
 
@@ -16,7 +16,7 @@ resource "aws_route_table" "pscloud-route-table" {
   vpc_id                      = var.pscloud_vpc_id
 
   tags = {
-    Name                      = "${var.pscloud_company}_rt_${var.pscloud_type}_${var.pscloud_env}"
+    Name                      = "${var.pscloud_company}_rt_${var.pscloud_type}_${var.pscloud_env}_${var.pscloud_project}"
     Project                   = var.pscloud_project
   }
 }
