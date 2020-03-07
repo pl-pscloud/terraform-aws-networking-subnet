@@ -29,6 +29,14 @@ resource "aws_route" "pscloud-route" {
   gateway_id                  = var.pscloud_routes_list[count.index].gateway_id
 }
 
+resource "aws_route" "pscloud-route-by-nat" {
+  count                       = length(var.pscloud_routes_by_nat_list)
+
+  route_table_id              = aws_route_table.pscloud-route-table.id
+  destination_cidr_block      = var.pscloud_routes_by_nat_list[count.index].cidr_block
+  nat_gateway_id              = var.pscloud_routes_by_nat_list[count.index].nat_gateway_id
+}
+
 
 resource "aws_route_table_association" "pscloud-rt-assoc" {
   count                   = length(aws_subnet.pscloud-subnet)

@@ -20,3 +20,11 @@ variable "pscloud_routes_list" {
   }))
   default = []
 }
+
+variable "pscloud_routes_by_nat_list" {
+  type = list(object({
+    nat_gateway_id      = string
+    cidr_block          = string
+  }))
+  default = []
+}
