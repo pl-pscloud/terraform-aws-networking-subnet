@@ -51,9 +51,3 @@ resource "aws_route_table_association" "pscloud-rt-assoc" {
   subnet_id               = each.value.id
   route_table_id          = aws_route_table.pscloud-route-table.id
 }
-
-#resource "aws_route_table_association" "pscloud-rt-assoc" {
-#  count                   = length(aws_subnet.pscloud-subnet)
-#  subnet_id               = aws_subnet.pscloud-subnet[count.index].id
-#  route_table_id          = aws_route_table.pscloud-route-table.id
-#}
